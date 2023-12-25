@@ -10,7 +10,7 @@ export default function Page() {
         <meta name="description" content="david.ramirez@edu.ece.fr" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>
+      <h1 className='wt-title'>
         About us. Team 4, Webtech Group 3
       </h1>
       <p>
