@@ -1,19 +1,35 @@
-// components/Header.js
-
 import Link from 'next/link';
+import Image from 'next/image';
 
-function Header() {
+export default function Header() {
   return (
     <header>
-      <h1>Lab 4 GR3 TEAM 4</h1>
-      <nav>
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/contacts">Contacts</Link>
-        <Link href="/articles">Articles</Link>
-      </nav>
+      <div>
+        <Link href="/">
+          <div>
+            <Image
+              src="/D.jpg"
+              alt="Adaltas Logo"
+              width={25}
+              height={25}
+            />
+            <span>
+              Web Technologies
+            </span>
+          </div>
+        </Link>
+        <nav>
+          <Link href="/articles">
+            <span>Articles</span>
+          </Link>
+          <Link href="/about">
+            <span>About</span>
+          </Link>
+          <Link href="/contacts">
+            <span>Contact</span>
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }
-
-export default Header;

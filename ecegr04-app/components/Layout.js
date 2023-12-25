@@ -1,16 +1,14 @@
-// components/Layout.js
-
 import Header from './Header';
 import Footer from './Footer';
 
-function Layout({ children }) {
+export default function Layout({ children }) {
   return (
     <div>
       <Header />
-      {children}
+      <main>
+        {children}
+      </main>
       <Footer />
     </div>
   );
 }
-
-export default Layout;
