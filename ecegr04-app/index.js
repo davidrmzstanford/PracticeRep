@@ -1,6 +1,10 @@
-// Import modules
-const http = require('http')
-const handles = require('./handles')
+const express = require('express');
+const app = express();
+const router = require('./router'); // Renamed from 'handles' to 'router'
 
-const server = http.createServer(handles.serverHandle);
-server.listen(8080)
+app.use('/', router);
+
+const port = 8080;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
