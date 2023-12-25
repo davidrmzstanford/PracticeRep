@@ -2,29 +2,11 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { UserCircleIcon } from '@heroicons/react/24/outline'; 
+import { useContext } from 'react';
+import UserContext from './UserContext'
 
 export default function Header() {
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('/api/profile');
-        if (response.ok) {
-          const data = await response.json();
-          setProfile(data);
-        } else {
-          // Handle errors or logout state
-          console.error('Profile fetch failed:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Fetching profile caused an error:', error);
-      }
-    }
-
-    fetchData();
-  }, []);
-
+  const {profile, login, logout} = useContext(UserContext)
   return (
     <header className="bg-blue-600 text-white py-4 shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6">
@@ -58,6 +40,17 @@ export default function Header() {
             </div>
           )}
         </nav>
+        <li className="py-1 px-2 text-slate-800 hover:text-slate-500">
+          { profile ?
+            <button onClick= {() => logout()} className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
+              Log out
+            </button>
+            :
+            <button onClick={() => login()} className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6">
+              Log in
+            </button>
+          }
+        </li>
       </div>
     </header>
   );
