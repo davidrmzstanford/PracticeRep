@@ -37,7 +37,7 @@ router.get('/hello', (req, res) => {
     }
 });
 
-// Catch-all for JSON file serving or 404
+//404
 router.get('*', (req, res) => {
     const jsonFilePath = path.join(__dirname, 'content', req.path.substr(1) + '.json');
     if (fs.existsSync(jsonFilePath)) {
