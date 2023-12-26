@@ -1,8 +1,16 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Layout from '../components/Layout.js'
+import Head from 'next/head';
+import { useState } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import Layout from '../components/Layout.js';
 
 export default function Page() {
+  const supabase = useSupabaseClient()
+  const [message, setMessage] = useState(null)
+  const onSubmit = async function(e){
+    e.preventDefault()
+    // Insert contact record into the contacts database
+    // Print a friendly confirmation message
+  }
   return (
     <Layout>
       <Head>
@@ -13,26 +21,26 @@ export default function Page() {
       <h1 className='wt-title'>
         Contact
       </h1>
-      <form className="[&_span]:block">
+      <form className="[&_span]:block" onSubmit={onSubmit}>
         <div>
           <label>
-            <span>David</span>
+            <span>First name</span>
             <input type="text" name="firstname" />
           </label>
         </div>
         <div>
           <label>
-            <span>Ramirez</span>
+            <span>Last name</span>
             <input type="text" name="lastname" />
           </label>
         </div>
         <div>
           <label>
-            <span>david.ramirez@edu.ece.fr</span>
+            <span>Email</span>
             <input type="text" name="email" />
           </label>
-        <div>
         </div>
+        <div>
           <label>
             <span>Message</span>
             <textarea name="message" />
@@ -42,6 +50,21 @@ export default function Page() {
           <input type="submit" value="Send" />
         </div>
       </form>
+      {message &&
+        <div
+          aria-label="Alert pane"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center"
+          onClick={() => setMessage(null)}
+          role="dialog"
+        >
+          <div
+            aria-label="Alert message"
+            className="max-h-[90vh] max-w-[95vw] overflow-auto p-4 prose bg-white"
+          >
+            {message}
+          </div>
+        </div>
+      }
     </Layout>
-  )
+  );
 }
