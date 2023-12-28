@@ -12,6 +12,13 @@ export default function Articles({
       <h1 className='wt-title'>
         Web technologies articles
       </h1>
+      <div className="my-5">
+        <Link href="/create-article">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create New Article
+          </button>
+        </Link>
+      </div>
       <p className="italic font-bold my-5">This page fetches data at build time, excellent for SEO.</p>
       <ul>
         {articles.map( article => (
